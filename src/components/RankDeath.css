@@ -1,0 +1,42 @@
+.rankdeath {
+    height: 500px;
+    color: whitesmoke;
+    flex: 0.5;
+}
+
+.titleWrap > h1 {
+    color: red;
+}
+
+.titleWrap > h2 {
+    color: red;
+}
+
+.scope {
+    height: 410px;
+    overflow: auto;
+}
+
+.titleWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.deathItem {
+    padding: 3px 0;
+    border-bottom: 1px solid gray;
+}
+
+.deathDigit {
+    padding-left: 3px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: lightgray;
+}

@@ -1,0 +1,26 @@
+.rankRecovered {
+    height: 500px;
+    overflow: auto;
+    color: whitesmoke;
+    flex: 0.5;
+}
+
+.scope {
+    height: 410px;
+    overflow: auto;
+}
+
+.recoveredWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.recoveredWrap > h1 {
+    color: #00911C;
+}
+
+.recoveredWrap > h2 {
+    color: #00911C;
+}
