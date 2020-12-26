@@ -1,5 +1,5 @@
 .rankdeath {
-    height: 500px;
+    height: 300px;
     color: whitesmoke;
     flex: 0.5;
 }
@@ -13,7 +13,7 @@
 }
 
 .scope {
-    height: 410px;
+    height: 226px;
     overflow: auto;
 }
 
@@ -22,6 +22,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .deathItem {
@@ -34,9 +35,13 @@
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 7px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: lightgray;
+    background: #5C5C5C;
+}
+
+::-webkit-scrollbar-track {
+    background: #404040;
 }

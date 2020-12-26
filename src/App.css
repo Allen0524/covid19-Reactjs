@@ -20,5 +20,10 @@
 .app__table {
     flex: 0.3;
     display: flex;
+    flex-direction: column;
+}
+
+.app__rankwrap {
+    display: flex;
 }
 

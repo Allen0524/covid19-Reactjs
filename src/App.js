@@ -3,6 +3,7 @@ import './App.css';
 import Infobox from './components/Infobox';
 import RankDeath from './components/RankDeath';
 import RankRecovered from './components/RankRecovered';
+import LineGraph from './components/LineGraph';
 import {
   MenuItem,
   FormControl,
@@ -75,9 +76,17 @@ function App() {
         {/* chart left */}
         {/* Rank right */}
         <div className="app__table">
-          <RankDeath lists={rankData} />
-          <RankRecovered lists={rankData}/>
+          <div className="app__rankwrap">
+            <RankDeath lists={rankData} />
+            <RankRecovered lists={rankData}/>
+          </div>
+          {/* Line Graph */}
+          <div className="app__graph">
+              <LineGraph/>
+          </div>
         </div>
+        
+
       </div>
       
       
