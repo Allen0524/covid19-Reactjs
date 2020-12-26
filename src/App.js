@@ -41,7 +41,6 @@ function App() {
     if (selCountry === "Taiwan*"){
       url = "https://disease.sh/v3/covid-19/countries/Taiwan";
     }
-    console.log(url);
     await axios.get(url).then(res => {
       setCountryInfo(res.data)
     })
@@ -60,8 +59,8 @@ function App() {
         <FormControl>
           <Select variant="outlined" onChange={onCountryPicked} value={country}>
             <MenuItem value={country}>{country}</MenuItem>
-            {countries.map((country) => (
-              <MenuItem value={country.name}>{country.name}</MenuItem>
+            {countries.map((country, i) => (
+              <MenuItem key={i} value={country.name}>{country.name}</MenuItem>
             ))}
           </Select>
         </FormControl>
