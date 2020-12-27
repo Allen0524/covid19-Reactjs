@@ -7,7 +7,7 @@ function Infobox({title, number, total}) {
     if(number == null) {
         return 'Loading....'
     }
-    
+
     return (
         <div className="infobox">
             <h4>{title}</h4>

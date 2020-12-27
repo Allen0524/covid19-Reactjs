@@ -1,6 +1,5 @@
 .app__stats {
     display: flex;
-    flex: 0.7;
     justify-content: space-around;
 }
 
@@ -15,6 +14,8 @@
 
 .app__content {
     display: flex;
+    flex-direction: column;
+    flex: 0.7;
 }
 
 .app__table {
@@ -24,6 +25,10 @@
 }
 
 .app__rankwrap {
+    display: flex;
+}
+
+.app__belowWrap {
     display: flex;
 }
 

@@ -4,27 +4,36 @@ import Infobox from './components/Infobox';
 import RankDeath from './components/RankDeath';
 import RankRecovered from './components/RankRecovered';
 import LineGraph from './components/LineGraph';
+import Map from './components/Map';
 import {
   MenuItem,
   FormControl,
   Select,
 } from '@material-ui/core';
 import axios from 'axios';
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("all");
   const [countryInfo, setCountryInfo] = useState({});
   const [rankData, setRankData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({lat:23.58, lng:120.58});
+  const [mapZoom, setMapZoom] = useState(3);
+
   // get all country name
   useEffect(() => {
-    const getdata= async () => {
-      const data = await axios.get("https://covid19.mathdro.id/api/countries")
-      .then(res => (res.data.countries));
-      // console.log(data);
-      setCountries(data);
-    }
-    getdata();
+    const getCountriesData= async () => {
+      await axios.get("https://disease.sh/v3/covid-19/countries/")
+      .then(res => {
+        const countries = res.data.map(country => ({
+          name: country.country,
+          value: country.countryInfo.iso2
+        }));
+        setCountries(countries);
+      });
+    };
+    getCountriesData();
   }, []);
 
   // get global data
@@ -36,19 +45,24 @@ function App() {
   // pick country
   const onCountryPicked = async (e) => {
     const selCountry = e.target.value;
-    setCountry(selCountry);
-    let url = selCountry==='all' ? 'https://disease.sh/v3/covid-19/all' : `https://disease.sh/v3/covid-19/countries/${selCountry}`;
-    if (selCountry === "Taiwan*"){
-      url = "https://disease.sh/v3/covid-19/countries/Taiwan";
-    }
+    
+    const url = selCountry === 'all' ? 'https://disease.sh/v3/covid-19/all' : `https://disease.sh/v3/covid-19/countries/${selCountry}`;
+    
     await axios.get(url).then(res => {
-      setCountryInfo(res.data)
-    })
-  }
+      setCountry(selCountry);
+      setCountryInfo(res.data);
+      setMapZoom(4);
+      setMapCenter([res.data.countryInfo.lat, res.data.countryInfo.long]);
+      
+    });
+  };
 
   // get Rank Data
   useEffect(()=>{
-    axios.get("https://disease.sh/v3/covid-19/countries").then(res => setRankData(res.data));
+    const getRankData = async ()=>{
+      await axios.get("https://disease.sh/v3/covid-19/countries").then(res => setRankData(res.data));
+    };
+    getRankData();
   },[]);
 
   return (
@@ -60,35 +74,35 @@ function App() {
           <Select variant="outlined" onChange={onCountryPicked} value={country}>
             <MenuItem value={country}>{country}</MenuItem>
             {countries.map((country, i) => (
-              <MenuItem key={i} value={country.name}>{country.name}</MenuItem>
+              <MenuItem key={i} value={country.value}>{country.name}</MenuItem>
             ))}
           </Select>
         </FormControl>
       </div>
-      {/* Infobox on the top og the chart */}
-      <div className="app__content">
-        <div className="app__stats">
-          <Infobox title='Confirmed' total={countryInfo.cases} number={countryInfo.todayCases} />
-          <Infobox title='Recovered' total={countryInfo.recovered} number={countryInfo.todayRecovered} />
-          <Infobox title='Deaths' total={countryInfo.deaths} number={countryInfo.todayDeaths} />
+      {/* Infobox on the top of the chart */}
+      <div className="app__belowWrap">
+        <div className="app__content">
+          <div className="app__stats">
+            <Infobox title='Confirmed' total={countryInfo.cases} number={countryInfo.todayCases} />
+            <Infobox title='Recovered' total={countryInfo.recovered} number={countryInfo.todayRecovered} />
+            <Infobox title='Deaths' total={countryInfo.deaths} number={countryInfo.todayDeaths} />
+          </div>
+          {/* chart left */}
+          <Map center={mapCenter} zoom={mapZoom} />
+          {/* Rank right */}
         </div>
-        {/* chart left */}
-        {/* Rank right */}
         <div className="app__table">
-          <div className="app__rankwrap">
-            <RankDeath lists={rankData} />
-            <RankRecovered lists={rankData}/>
-          </div>
-          {/* Line Graph */}
-          <div className="app__graph">
-              <LineGraph/>
-          </div>
+            <div className="app__rankwrap">
+              <RankDeath lists={rankData} />
+              <RankRecovered lists={rankData}/>
+            </div>
+            {/* Line Graph */}
+            <div className="app__graph">
+                <LineGraph/>
+            </div>
         </div>
-        
-
       </div>
-      
-      
+
     </div>
   );
 }

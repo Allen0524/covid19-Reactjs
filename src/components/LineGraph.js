@@ -47,12 +47,10 @@ function LineGraph() {
             f['backgroundColor'] = 'rgba(190,170,0,0.5)'
             f['label'] = 'Cases';
             g[0] = f;
-            console.log(f)
             tempData['labels'] = keys;
             tempData['datasets'] = g;
 
             setData(tempData);
-            console.log(tempData);
         };
         getData();
 
