@@ -1,9 +1,11 @@
 import React from 'react';
 import './Map.css';
 import {MapContainer, TileLayer, useMap} from 'react-leaflet';
+import {showDataOnMap} from '../util/util';
 
-function Map({center, zoom}) {  
-   function MyComponent() {
+function Map({countries, center, zoom}) {  
+
+    function MyComponent() {
         const map = useMap();
         map.setView(center, zoom);
         return null;
@@ -16,6 +18,8 @@ function Map({center, zoom}) {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 <MyComponent/>
+                {showDataOnMap(countries, 'cases')}
+                
             </MapContainer>
         </div>
     )

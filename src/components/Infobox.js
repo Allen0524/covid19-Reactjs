@@ -3,11 +3,9 @@ import './Infobox.css';
 import CountUp from 'react-countup';
 
 function Infobox({title, number, total}) {
-
-    if(number == null) {
-        return 'Loading....'
+    if(number === undefined) {
+        return 'Loading...';
     }
-
     return (
         <div className="infobox">
             <h4>{title}</h4>

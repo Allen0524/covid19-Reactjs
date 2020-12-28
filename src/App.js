@@ -14,12 +14,16 @@ import axios from 'axios';
 import "leaflet/dist/leaflet.css";
 
 function App() {
-  const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState("all");
+  // 取得下拉選單國家資料
+  const [dropDownName, setdropDownName] = useState([]);
+  // 選擇國家
+  const [selCountry, setSelCountry] = useState("all");
   const [countryInfo, setCountryInfo] = useState({});
   const [rankData, setRankData] = useState([]);
   const [mapCenter, setMapCenter] = useState({lat:23.58, lng:120.58});
   const [mapZoom, setMapZoom] = useState(3);
+  // 地圖上各國家資料
+  const [mapCountries, setMapCountries] = useState([]);
 
   // get all country name
   useEffect(() => {
@@ -30,30 +34,30 @@ function App() {
           name: country.country,
           value: country.countryInfo.iso2
         }));
-        setCountries(countries);
+        setdropDownName(countries);
+        setMapCountries(res.data);
       });
     };
     getCountriesData();
   }, []);
 
-  // get global data
   useEffect(()=>{
-    axios.get("https://disease.sh/v3/covid-19/all")
-    .then(res => setCountryInfo(res.data));
+    const getGlobalData = async () => {
+      await axios.get("https://disease.sh/v3/covid-19/all")
+      .then(res => setCountryInfo(res.data));
+    };
+    getGlobalData();
   }, []);
 
   // pick country
   const onCountryPicked = async (e) => {
-    const selCountry = e.target.value;
-    
-    const url = selCountry === 'all' ? 'https://disease.sh/v3/covid-19/all' : `https://disease.sh/v3/covid-19/countries/${selCountry}`;
-    
+    let selectedCountry = e.target.value;
+    let url = selectedCountry === 'all' ? 'https://disease.sh/v3/covid-19/all' : `https://disease.sh/v3/covid-19/countries/${selectedCountry}`;
     await axios.get(url).then(res => {
-      setCountry(selCountry);
+      setSelCountry(selectedCountry);
       setCountryInfo(res.data);
       setMapZoom(4);
       setMapCenter([res.data.countryInfo.lat, res.data.countryInfo.long]);
-      
     });
   };
 
@@ -71,9 +75,9 @@ function App() {
       <div className="app__header">
         <h1>COVID19</h1>
         <FormControl>
-          <Select variant="outlined" onChange={onCountryPicked} value={country}>
-            <MenuItem value={country}>{country}</MenuItem>
-            {countries.map((country, i) => (
+          <Select variant="outlined" onChange={onCountryPicked} value={selCountry}>
+            <MenuItem value="all">all</MenuItem>
+            {dropDownName.map((country, i) => (
               <MenuItem key={i} value={country.value}>{country.name}</MenuItem>
             ))}
           </Select>
@@ -88,7 +92,7 @@ function App() {
             <Infobox title='Deaths' total={countryInfo.deaths} number={countryInfo.todayDeaths} />
           </div>
           {/* chart left */}
-          <Map center={mapCenter} zoom={mapZoom} />
+          <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
           {/* Rank right */}
         </div>
         <div className="app__table">
