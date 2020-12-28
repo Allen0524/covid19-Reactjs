@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/covid19-Reactjs/static/css/main.3d991b71.chunk.css",
-    "main.js": "/covid19-Reactjs/static/js/main.6c238d50.chunk.js",
-    "main.js.map": "/covid19-Reactjs/static/js/main.6c238d50.chunk.js.map",
+    "main.js": "/covid19-Reactjs/static/js/main.86cf5612.chunk.js",
+    "main.js.map": "/covid19-Reactjs/static/js/main.86cf5612.chunk.js.map",
     "runtime-main.js": "/covid19-Reactjs/static/js/runtime-main.2fa9b158.js",
     "runtime-main.js.map": "/covid19-Reactjs/static/js/runtime-main.2fa9b158.js.map",
     "static/css/2.3d0b8d2d.chunk.css": "/covid19-Reactjs/static/css/2.3d0b8d2d.chunk.css",
-    "static/js/2.93fe72c7.chunk.js": "/covid19-Reactjs/static/js/2.93fe72c7.chunk.js",
-    "static/js/2.93fe72c7.chunk.js.map": "/covid19-Reactjs/static/js/2.93fe72c7.chunk.js.map",
+    "static/js/2.7c3e08a2.chunk.js": "/covid19-Reactjs/static/js/2.7c3e08a2.chunk.js",
+    "static/js/2.7c3e08a2.chunk.js.map": "/covid19-Reactjs/static/js/2.7c3e08a2.chunk.js.map",
     "index.html": "/covid19-Reactjs/index.html",
     "static/css/2.3d0b8d2d.chunk.css.map": "/covid19-Reactjs/static/css/2.3d0b8d2d.chunk.css.map",
     "static/css/main.3d991b71.chunk.css.map": "/covid19-Reactjs/static/css/main.3d991b71.chunk.css.map",
-    "static/js/2.93fe72c7.chunk.js.LICENSE.txt": "/covid19-Reactjs/static/js/2.93fe72c7.chunk.js.LICENSE.txt"
+    "static/js/2.7c3e08a2.chunk.js.LICENSE.txt": "/covid19-Reactjs/static/js/2.7c3e08a2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2fa9b158.js",
     "static/css/2.3d0b8d2d.chunk.css",
-    "static/js/2.93fe72c7.chunk.js",
+    "static/js/2.7c3e08a2.chunk.js",
     "static/css/main.3d991b71.chunk.css",
-    "static/js/main.6c238d50.chunk.js"
+    "static/js/main.86cf5612.chunk.js"
   ]
 }
