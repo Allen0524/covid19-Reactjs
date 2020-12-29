@@ -12,6 +12,10 @@
     color: white;
 }
 
+.MuiFormControl-root {
+    background-color: grey;
+}
+
 .app__content {
     display: flex;
     flex-direction: column;

@@ -24,6 +24,7 @@ function App() {
   const [mapZoom, setMapZoom] = useState(3);
   // 地圖上各國家資料
   const [mapCountries, setMapCountries] = useState([]);
+  const [caseType, setCaseType] = useState("cases");
 
   // get all country name
   useEffect(() => {
@@ -87,12 +88,27 @@ function App() {
       <div className="app__belowWrap">
         <div className="app__content">
           <div className="app__stats">
-            <Infobox title='Confirmed' total={countryInfo.cases} number={countryInfo.todayCases} />
-            <Infobox title='Recovered' total={countryInfo.recovered} number={countryInfo.todayRecovered} />
-            <Infobox title='Deaths' total={countryInfo.deaths} number={countryInfo.todayDeaths} />
+            <Infobox
+              active={caseType === "cases"} 
+              onClick={e=>setCaseType("cases")} 
+              title='Confirmed' 
+              total={countryInfo.cases} 
+              number={countryInfo.todayCases} />
+            <Infobox 
+              active={caseType === "recovered"} 
+              onClick={e=>setCaseType("recovered")} 
+              title='Recovered' 
+              total={countryInfo.recovered} 
+              number={countryInfo.todayRecovered} />
+            <Infobox
+              active={caseType === "deaths"}  
+              onClick={e=>setCaseType("deaths")} 
+              title='Deaths' 
+              total={countryInfo.deaths} 
+              number={countryInfo.todayDeaths} />
           </div>
           {/* chart left */}
-          <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
+          <Map countries={mapCountries} caseType={caseType} center={mapCenter} zoom={mapZoom} />
           {/* Rank right */}
         </div>
         <div className="app__table">

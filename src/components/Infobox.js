@@ -2,12 +2,12 @@ import React from 'react'
 import './Infobox.css';
 import CountUp from 'react-countup';
 
-function Infobox({title, number, total}) {
+function Infobox({title, number, total, active, ...props}) {
     if(number === undefined) {
         return 'Loading...';
     }
     return (
-        <div className="infobox">
+        <div onClick={props.onClick} className={`infobox ${active && "infobox--selected"}`}>
             <h4>{title}</h4>
             <h1>
                 <CountUp

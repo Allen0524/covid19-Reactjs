@@ -9,5 +9,12 @@
     justify-content: center;
     border-radius: 10px;
     height: 80px;
+    cursor: pointer;
+}
+
+.infobox--selected {
+    border-top: 10px solid greenyellow;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import {Circle, Popup} from 'react-leaflet';
+import numeral from 'numeral'
 
 const caseTypeColor = {
     cases: {
@@ -13,23 +14,33 @@ const caseTypeColor = {
     deaths: {
         hex: "fb4443",
         multiplier: 2000
-    }
-}
+    },
+};
 
-export const showDataOnMap = (data, caseType) => (
-    
+
+export const showDataOnMap = (data, caseType) => {
+
+    return(
     data.map((country, i)=> (
         <Circle 
-            center={[country.countryInfo.lat, country.countryInfo.long]}
-            fillOpacity={0.4}
-            color={caseTypeColor[caseType].hex}
-            fillColor={caseTypeColor[caseType].hex}
-            radius={Math.sqrt(country[caseType])*caseTypeColor[caseType].multiplier}
+            pathOptions={{color: caseTypeColor[caseType].hex,
+                fillColor:caseTypeColor[caseType].hex}}
             key={i}
+            center={[country.countryInfo.lat, country.countryInfo.long]}
+            // color={caseTypeColor[caseType].hex}
+            // fillColor={caseTypeColor[caseType].hex}
+            fillOpacity={0.4}
+            radius={Math.sqrt(country[caseType])*caseTypeColor[caseType].multiplier} 
         >
             <Popup>
-                <h3>I am a Popup.</h3>
+                <div className="info-container">
+                    <div className="info-flag" style={{background:`url(${country.countryInfo.flag})`}}></div>
+                    <div className="info-name">{country.country}</div>
+                    <div className="info-cases">Cases: {numeral(country.cases).format('0,0')}</div>
+                    <div className="info-recovered">Recovered: {numeral(country.recovered).format('0,0')}</div>
+                    <div className="info-deaths">Deaths: {numeral(country.deaths).format('0,0')}</div>
+                </div>
             </Popup>
         </Circle>
     ))
-);
+    )};
