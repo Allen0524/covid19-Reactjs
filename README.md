@@ -11,3 +11,4 @@ covid19 Dashboard.
 * React.js
 * react-leaflet.js
 * countup.js
+* API
