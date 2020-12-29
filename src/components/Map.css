@@ -1,6 +1,6 @@
 .map {
     height: 500px;
-    background-color: white;
+    background-color: whitesmoke;
     padding: 1rem;
     border-radius: 20px;
     margin-top: 16px;
@@ -28,8 +28,10 @@
 .info-flag {
     height: 80px;
     width: 100%;
-    background-size: cover;
+    /* background-size: cover;
+    background-position:  center; */
     border-radius: 8px;
+    object-fit: cover;
 }
 
 .info-confirmed,
@@ -37,8 +39,4 @@
 .info-deaths {
     font-size: 16px;
     margin-top: 5px;
-}
-
-.leaflet-interactive1 {
-    fill: #77dddd
 }

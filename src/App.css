@@ -1,3 +1,12 @@
+.app {
+    background: url('https://imgcdn.cna.com.tw/www/WebPhotos/1024/20201229/1920x1025_477915163064.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(0, 0, 0, .5);
+    background-blend-mode: multiply;
+}
+
 .app__stats {
     display: flex;
     justify-content: space-around;
@@ -10,10 +19,13 @@
 
 .app__header > h1 {
     color: white;
+    width: 150px;
 }
 
 .MuiFormControl-root {
-    background-color: grey;
+    background-color: rgba(255, 255, 255, 0.315);
+    width: 150px;
+    border-radius: 15px;
 }
 
 .app__content {

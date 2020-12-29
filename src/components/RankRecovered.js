@@ -14,7 +14,7 @@ export default function RankRecovered({ lists }) {
                 .map((item, i)=>(<div key={i} className="deathItem">
                     <h4>{item.country}</h4>
                     <h5 className="deathDigit">{numeral(item.recovered).format('0,0')}
-                    <span style={{color: 'gray'}}> deaths</span>
+                    <span style={{color: 'gray'}}> recovered</span>
                     </h5></div>)): <h1>null</h1>}
             </div>
         </div>

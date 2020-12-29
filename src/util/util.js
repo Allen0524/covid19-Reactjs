@@ -23,6 +23,7 @@ export const showDataOnMap = (data, caseType) => {
     return(
     data.map((country, i)=> (
         <Circle 
+        // 用pathoptions才能修改資料
             pathOptions={{color: caseTypeColor[caseType].hex,
                 fillColor:caseTypeColor[caseType].hex}}
             key={i}
@@ -34,9 +35,10 @@ export const showDataOnMap = (data, caseType) => {
         >
             <Popup>
                 <div className="info-container">
-                    <div className="info-flag" style={{background:`url(${country.countryInfo.flag})`}}></div>
+                    <img className="info-flag" src={country.countryInfo.flag} alt=""/>
+                    {/* <div className="info-flag" style={{background:`url(${country.countryInfo.flag})`}}></div> */}
                     <div className="info-name">{country.country}</div>
-                    <div className="info-cases">Cases: {numeral(country.cases).format('0,0')}</div>
+                    <div className="info-confirmed">Cases: {numeral(country.cases).format('0,0')}</div>
                     <div className="info-recovered">Recovered: {numeral(country.recovered).format('0,0')}</div>
                     <div className="info-deaths">Deaths: {numeral(country.deaths).format('0,0')}</div>
                 </div>
